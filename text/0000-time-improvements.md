@@ -119,7 +119,7 @@ directly address time zones.
 
 ## Types
 
-```rs
+```rust
 pub struct ProcessTime {
   secs: u64,
   nanos: u32
@@ -165,7 +165,7 @@ use for negative values. Rather than require each API that takes a `Duration`
 to produce an `Err` (or `panic!`) when receiving a negative value, this design
 optimizes for the broadly useful positive `Duration`.
 
-```rs
+```rust
 impl ProcessTime {
   /// Panics if `earlier` is later than &self.
   /// Because ProcessTime is monotonic, the only time that `earlier` should be
@@ -200,7 +200,7 @@ The "standard" terminology comes from [JodaTime][joda-time-standard].
 
 [joda-time-standard]: http://joda-time.sourceforge.net/apidocs/org/joda/time/Duration.html#standardDays(long)
 
-```rs
+```rust
 impl Duration {
   /// a standard minute is 60 seconds
   /// panics if the number of minutes is larger than u64 seconds
@@ -239,7 +239,7 @@ This design attempts to help the programmer catch the most egregious of these
 kinds of mistakes (unexpected travel **back in time**) before the mistake
 propagates.
 
-```rs
+```rust
 impl SystemTime {
   /// Returns an `Err` if `earlier` is later
   pub fn duration_from_earlier(&self, earlier: SystemTime) -> Result<Duration, SystemTimeError>;
